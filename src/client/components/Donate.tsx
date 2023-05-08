@@ -24,7 +24,7 @@ const Donate = () => {
             return;
         };
 
-        const paymentMethod = stripe.createPaymentMethod({
+        const paymentMethod = await stripe.createPaymentMethod({
             card: card,
             type: "card"
         });

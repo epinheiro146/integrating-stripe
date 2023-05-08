@@ -10,9 +10,10 @@ router.post('/', async (req, res) => {
         const client = new stripe(stripeConf.key!, { apiVersion: '2022-11-15' });
 
         const results = await client.paymentIntents.create({
-            payment_method: paymentMethod.id,
+            payment_method: paymentMethod.paymentMethod.id,
             amount: amount * 100,
-            currency: 'usd'
+            currency: 'usd',
+            confirm: true
         })
 
         res.json({ message: "Your donation has been submitted.", results })
